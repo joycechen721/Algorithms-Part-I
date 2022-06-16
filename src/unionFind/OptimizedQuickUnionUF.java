@@ -1,9 +1,9 @@
 package unionFind;
 
-public class QuickUnionUF {
+public class OptimizedQuickUnionUF {
     private int[] id;
 
-    public QuickUnionUF(int N) {
+    public OptimizedQuickUnionUF(int N) {
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
@@ -26,7 +26,8 @@ public class QuickUnionUF {
     }
 
     /*
-        root(p) is linked to root(q).
+        optimized so that root of smaller tree is linked to
+        root of bigger tree, rather than the
      */
     public void union(int p, int q){
         int i = root(p);
