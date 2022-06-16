@@ -1,5 +1,4 @@
 package unionFind;
-
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -16,7 +15,8 @@ public class Percolation {
         use n*n as the "virtual top root"
         use n*n + 1 as the "virtual bottom root"
      */
-    public Percolation(int n){
+    public Percolation(int n) throws IllegalArgumentException{
+        if (n <= 0) throw new IllegalArgumentException();
         numOpen = 0;
         grid = new int [n + 1][n + 1];
         size = n + 1;
@@ -44,7 +44,9 @@ public class Percolation {
         opens the site (row, col) if it is not open already
         use value 0 to signify opening
      */
-    public void open(int row, int col){
+    public void open(int row, int col) throws IllegalArgumentException{
+        if (row > size || row < 0
+            || col < 0 || col > size) throw new IllegalArgumentException();
         int currNode = getIndex(row, col);
         grid[row][col] = 0;
         numOpen++;
@@ -100,8 +102,7 @@ public class Percolation {
     // test client (optional)
     public static void main(String[] args){
         Percolation grid = new Percolation(8);
-        grid.open(1,1);
-        grid.open(1, 2);
+
         grid.open(2, 2);
         grid.open(3,2);
         grid.open(3, 3);
@@ -109,9 +110,11 @@ public class Percolation {
         grid.open(5,3);
         grid.open(5,4);
         grid.open(5,5);
-        grid.open(6,5);
         grid.open(7,5);
         grid.open(8,5);
+        grid.open(1,1);
+        grid.open(1, 2);
+        grid.open(6,5);
         System.out.println(grid.percolates());
     }
 }
