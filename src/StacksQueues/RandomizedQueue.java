@@ -3,6 +3,7 @@ package StacksQueues;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
+import java.util.Random;
 
 /*
     A randomized queue is similar to a stack or queue, except that the item removed
@@ -31,7 +32,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private void resize(int capacity){
         Item [] copy = (Item[]) new Object[capacity];
-        for (int i = 0; i < capacity; i++){
+        for (int i = 0; i < size; i++){
             copy[i] = queue[i];
         }
         queue = copy;
@@ -72,12 +73,13 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         private int index = 0;
 
         public Item[] shuffle(Item [] anArray){
-            System.arraycopy(anArray, size, array, 0, size - 1);
-            StdRandom.shuffle(array);
-            return array;
+            Item [] copy = (Item[]) new Object[size];
+            System.arraycopy(anArray, 0, copy, 0, size);
+            StdRandom.shuffle(copy);
+            return copy;
         }
         public boolean hasNext(){
-            return index != size - 1;
+            return index != size;
         }
         public void remove() {
             throw new UnsupportedOperationException("Remove method not supported in deque iterator.");
@@ -92,7 +94,16 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args){
-
+        RandomizedQueue<Integer> queue = new RandomizedQueue<>();
+        queue.enqueue(15);
+        queue.enqueue(20);
+        queue.enqueue(23);
+        queue.enqueue(40);
+        queue.enqueue(36);
+        System.out.println(queue.dequeue());
+        for(int number : queue){
+            System.out.println(number);
+        }
     }
 
 }
