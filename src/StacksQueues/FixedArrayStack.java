@@ -1,24 +1,24 @@
 package StacksQueues;
 
-public class SimpleArrayStack {
-    private String [] s;
+public class FixedArrayStack<Item> {
+    private Item [] s;
     private int N = 0; //# of objects in stack
 
     //defect: what if # of objects > stack capacity (array size)?
-    public SimpleArrayStack (int capacity){
-         s = new String[capacity];
+    public FixedArrayStack(int capacity){
+         s = (Item []) new Object[capacity]; //ugly cast --> may give warnings
     }
 
     public boolean isEmpty(){
         return N == 0;
     }
 
-    public void push (String item){
+    public void push (Item item){
         s[N++] = item;          //first index into array, then increment N
     }
 
-    public String pop(){
-        String item = s[--N];   //first decrement N, then index into array to retrieve String content
+    public Item pop(){
+        Item item = s[--N];   //first decrement N, then index into array to retrieve String content
         s[N] = null;      //avoids "loitering" by removing String content completely, efficient use of memory
         return item;
     }

@@ -1,12 +1,12 @@
 package StacksQueues;
 
-//simple stack implementation using linked list
-public class LinkedStack {
+//simple generic stack implementation using linked list
+public class LinkedStack<Item> {
     private Node first = null;
 
     //private inner class (access modifiers don't matter)
     private class Node{
-        String item;
+        Item item;
         Node next;
     }
 
@@ -15,7 +15,7 @@ public class LinkedStack {
         return first == null;
     }
 
-    public void push (String item){
+    public void push (Item item){
         Node oldFirst = first;
         first = new Node(); //point first to a new node object
         first.item = item; //set instance var
@@ -23,8 +23,8 @@ public class LinkedStack {
     }
 
     //return item of popped node
-    public String pop(){
-        String item = first.item;
+    public Item pop(){
+        Item item = first.item;
         first = first.next;
         return item;
     }
