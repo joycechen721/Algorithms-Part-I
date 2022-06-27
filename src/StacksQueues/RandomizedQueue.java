@@ -3,7 +3,6 @@ package StacksQueues;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Iterator;
-import java.util.Random;
 
 /*
     A randomized queue is similar to a stack or queue, except that the item removed
